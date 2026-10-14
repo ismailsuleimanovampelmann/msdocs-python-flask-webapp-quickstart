@@ -65,6 +65,24 @@ def storage_health():
             "message": "Storage connectivity or authorization failed"
         }), 503
 
+@app.route("/identity/health")
+def identity_health():
+    try:
+        credential.get_token(
+            "https://storage.azure.com/.default"
+        )
+
+        return jsonify({
+            "status": "success",
+            "message": "Azure identity token acquired"
+        })
+
+    except Exception:
+        app.logger.exception("Managed identity test failed")
+        return jsonify({
+            "status": "error",
+            "message": "Token acquisition failed"
+        }), 503
 
 @app.route("/storage/files")
 def list_files():
