@@ -33,7 +33,7 @@ def hello():
 
 # Azure Blob Storage configuration
 storage_account = os.environ["AZURE_STORAGE_ACCOUNT_NAME"]
-container_name = os.environ["AZURE_STORAGE_CONTAINER_NAME_01"]
+container_name = "test-documents"
 
 credential = DefaultAzureCredential()
 
